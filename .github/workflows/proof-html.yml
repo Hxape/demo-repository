@@ -1,25 +1,11 @@
-name: HTML Proofer
-
+name: Proof HTML
 on:
   push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout source code
-      uses: actions/checkout@v4
-
-    # Если у вас статический генератор, здесь должен быть шаг его сборки
-    # Например, для обычных HTML файлов этот шаг можно пропустить, 
-    # указав в следующем шаге нужную папку (например, корневую '.')
-
-    - name: HTML Proofer
-      uses: chanzuckerberg/github-action-html-proofer@v2
-      with:
-        directory:    "./" # Укажите папку, где лежат ваши HTML файлы
-        arguments:    "--check-html --allow-hash-href"
+      - uses: anishathalye/proof-html@v1.1.0
+        with:
+          directory: ./
